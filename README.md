@@ -12,3 +12,11 @@ To change the defaults to index mainnet instead of testnet, you have to:
 1. open [project.yaml](project.yaml)
 2. change the network => chainId to `0x0bd72c1c305172e1275278aaeb3f161e02eccb7a819e63f62d47bd53a28189f8`
 3. change the network => endpoint to `wss://rpc.subsocial.network`
+
+# How to run
+1. yarn
+2. yarn codegen
+3. yarn build
+4. yarn start:docker
+
+Note: step 4, sometimes will fail to run, you need to check the docker logs. Usually the error is just the gql server can't listen to the indexer, so just wait until the indexer starting to fetches block and rerun step 4 to relaunch the gql server.
