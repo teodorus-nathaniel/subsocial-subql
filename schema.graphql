@@ -1,0 +1,9 @@
+type Reputation @entity {
+  id: ID!
+  value: Int!
+}
+
+type Post @entity {
+  id: ID!
+  owner: String!
+}

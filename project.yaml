@@ -1,0 +1,51 @@
+specVersion: 1.0.0
+name: subsocial-subql
+version: 1.0.0
+runner:
+  node:
+    name: '@subql/node'
+    version: '>=1.0.0'
+  query:
+    name: '@subql/query'
+    version: '*'
+description: >-
+  This project can be used as a starting point for developing your SubQuery
+  project
+repository: 'https://github.com/subquery/subql-starter'
+schema:
+  file: ./schema.graphql
+network:
+  chainId: '0x39a4b1df833199e5a25d87ea98f3ab12bbec83108a2cc72e6ab6d54d6e94ea77'
+  endpoint: 'wss://testnet.subsocial.network'
+  dictionary: 'https://api.subquery.network/sq/subquery/polkadot-dictionary'
+dataSources:
+  - kind: substrate/Runtime
+    startBlock: 1
+    mapping:
+      file: ./dist/index.js
+      handlers:
+        - handler: handleEventProfileCreated
+          kind: substrate/EventHandler
+          filter:
+            module: profiles
+            method: ProfileCreated
+        - handler: handleEventPostCreated
+          kind: substrate/EventHandler
+          filter:
+            module: posts
+            method: PostCreated
+        - handler: handleEventPostReactionCreated
+          kind: substrate/EventHandler
+          filter:
+            module: reactions
+            method: PostReactionCreated
+        - handler: handleEventPostReactionDeleted
+          kind: substrate/EventHandler
+          filter:
+            module: reactions
+            method: PostReactionDeleted
+        - handler: handleEventPostReactionUpdated
+          kind: substrate/EventHandler
+          filter:
+            module: reactions
+            method: PostReactionUpdated
